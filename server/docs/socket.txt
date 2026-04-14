@@ -1,0 +1,24 @@
+Client → Server:
+  "subscribe" { userId }              # Join user's room
+
+Server → Client:
+  "application:status_update" {
+    applicationId,
+    status,
+    jobTitle,
+    company,
+    message
+  }
+
+  "application:log" {
+    applicationId,
+    step,
+    message,
+    level
+  }
+
+  "application:captcha" {
+    applicationId,
+    screenshotUrl,
+    message: "CAPTCHA detected, please solve manually"
+  }

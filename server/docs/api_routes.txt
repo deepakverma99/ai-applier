@@ -1,0 +1,62 @@
+POST   /api/v1/resume/upload
+  - Body: multipart/form-data { file: PDF }
+  - Action: Upload to Supabase Storage → Trigger AI parsing
+  - Response: { resumeId, fileName, status: "parsing" }
+
+GET    /api/v1/resume/list
+  - Response: [{ id, fileName, isPrimary, createdAt }]
+
+GET    /api/v1/resume/:id/parsed
+  - Response: { parsedJson: { ... master profile ... } }
+
+PUT    /api/v1/resume/:id/set-primary
+  - Action: Set this resume as active for applications
+  - Response: { success: true }
+
+DELETE /api/v1/resume/:id
+  - Action: Delete from storage and database
+
+  POST   /api/v1/credentials
+  - Body: { portalName: "indeed", email, password }
+  - Action: Encrypt credentials → Store in DB
+  - Response: { id, portalName, isVerified: false }
+
+GET    /api/v1/credentials
+  - Response: [{ id, portalName, email (masked), isVerified }]
+  - Note: Never return the password
+
+POST   /api/v1/credentials/:id/verify
+  - Action: Use Playwright to attempt login → Update isVerified
+  - Response: { isVerified: true/false, message }
+
+DELETE /api/v1/credentials/:id
+
+POST   /api/v1/jobs/apply
+  - Body: { jobUrls: ["https://indeed.com/job/123", ...] }
+  - Action: Parse portal from URL → Create job_applications rows
+           → Push to BullMQ queue
+  - Response: { queued: 5, applicationIds: [...] }
+
+GET    /api/v1/jobs/applications
+  - Query: ?status=queued&page=1&limit=20
+  - Response: { data: [...], total, page, totalPages }
+
+GET    /api/v1/jobs/applications/:id
+  - Response: { ...applicationDetails, logs: [...] }
+
+POST   /api/v1/jobs/applications/:id/retry
+  - Action: Re-queue a failed application
+  - Response: { status: "queued" }
+
+DELETE /api/v1/jobs/applications/:id
+  - Action: Remove from queue if pending, mark as cancelled
+
+GET    /api/v1/jobs/stats
+  - Response: {
+      total: 50,
+      queued: 10,
+      in_progress: 2,
+      submitted: 30,
+      failed: 5,
+      captcha_paused: 3
+    }

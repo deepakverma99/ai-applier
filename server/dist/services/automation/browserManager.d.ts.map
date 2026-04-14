@@ -1,0 +1,1 @@
+{"version":3,"file":"browserManager.d.ts","sourceRoot":"","sources":["../../../src/services/automation/browserManager.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAW,cAAc,EAAE,MAAM,YAAY,CAAC;AAE1D,qBAAa,cAAc;WACZ,MAAM,CAAC,OAAO,EAAE;QAC3B,QAAQ,EAAE,OAAO,CAAC;QAClB,KAAK,CAAC,EAAE,MAAM,GAAG,SAAS,CAAC;QAC3B,OAAO,EAAE,OAAO,CAAC;KAClB,GAAG,OAAO,CAAC,cAAc,CAAC;CA0E5B"}

@@ -1,0 +1,44 @@
+{
+  "personal": {
+    "full_name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1-555-0100",
+    "location": "San Francisco, CA",
+    "linkedin": "linkedin.com/in/johndoe",
+    "portfolio": "johndoe.dev"
+  },
+  "summary": "Full-stack developer with 3 years of experience...",
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "TechCorp",
+      "location": "San Francisco, CA",
+      "start_date": "2022-01",
+      "end_date": "present",
+      "description": "Built microservices architecture...",
+      "technologies": ["Node.js", "React", "PostgreSQL"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.S. Computer Science",
+      "institution": "State University",
+      "graduation_year": "2022",
+      "gpa": "3.7"
+    }
+  ],
+  "skills": {
+    "languages": ["JavaScript", "Python", "TypeScript"],
+    "frameworks": ["React", "Next.js", "Express"],
+    "tools": ["Docker", "Git", "AWS"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis"]
+  },
+  "certifications": ["AWS Cloud Practitioner"],
+  "work_authorization": "US Citizen",
+  "willing_to_relocate": true,
+  "expected_salary": {
+    "min": 80000,
+    "max": 120000,
+    "currency": "USD"
+  }
+}

@@ -1,0 +1,120 @@
+ai-auto-apply/
+│
+├── apps/
+│   ├── web/                          # Next.js 14+ Frontend
+│   │   ├── app/
+│   │   │   ├── (auth)/
+│   │   │   │   ├── login/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── signup/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── layout.tsx
+│   │   │   ├── (dashboard)/
+│   │   │   │   ├── dashboard/
+│   │   │   │   │   └── page.tsx      # Main dashboard
+│   │   │   │   ├── applications/
+│   │   │   │   │   └── page.tsx      # Track all applications
+│   │   │   │   ├── resume/
+│   │   │   │   │   └── page.tsx      # Upload & manage resumes
+│   │   │   │   ├── credentials/
+│   │   │   │   │   └── page.tsx      # Manage portal logins
+│   │   │   │   ├── apply/
+│   │   │   │   │   └── page.tsx      # Submit job URLs
+│   │   │   │   └── layout.tsx        # Sidebar + nav layout
+│   │   │   ├── api/                  # Next.js API routes (lightweight)
+│   │   │   │   └── webhook/
+│   │   │   │       └── route.ts
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx              # Landing page
+│   │   │   └── globals.css
+│   │   ├── components/
+│   │   │   ├── ui/                   # shadcn/ui components
+│   │   │   ├── dashboard/
+│   │   │   │   ├── StatsCards.tsx
+│   │   │   │   ├── ApplicationTable.tsx
+│   │   │   │   └── LiveStatusFeed.tsx
+│   │   │   ├── resume/
+│   │   │   │   ├── ResumeUploader.tsx
+│   │   │   │   ├── ParsedResumeView.tsx
+│   │   │   │   └── MasterProfileEditor.tsx
+│   │   │   ├── apply/
+│   │   │   │   ├── JobUrlInput.tsx
+│   │   │   │   └── ApplicationQueue.tsx
+│   │   │   └── shared/
+│   │   │       ├── Navbar.tsx
+│   │   │       ├── Sidebar.tsx
+│   │   │       └── LoadingSpinner.tsx
+│   │   ├── lib/
+│   │   │   ├── supabase/
+│   │   │   │   ├── client.ts         # Browser Supabase client
+│   │   │   │   ├── server.ts         # Server-side Supabase client
+│   │   │   │   └── middleware.ts     # Auth middleware
+│   │   │   ├── api.ts               # Axios instance for Express API
+│   │   │   └── utils.ts
+│   │   ├── hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useApplications.ts
+│   │   │   └── useRealtime.ts       # Supabase realtime subscription
+│   │   ├── types/
+│   │   │   └── index.ts
+│   │   ├── middleware.ts             # Next.js route protection
+│   │   ├── next.config.js
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── package.json
+│   │
+│   └── server/                       # Express.js Backend
+│       ├── src/
+│       │   ├── index.ts              # Express app entry point
+│       │   ├── config/
+│       │   │   ├── env.ts            # Environment variable validation
+│       │   │   ├── supabase.ts       # Supabase admin client
+│       │   │   ├── redis.ts          # Redis connection
+│       │   │   └── openai.ts         # OpenAI client setup
+│       │   ├── middleware/
+│       │   │   ├── auth.ts           # Verify Supabase JWT
+│       │   │   ├── rateLimiter.ts    # API rate limiting
+│       │   │   └── errorHandler.ts   # Global error handler
+│       │   ├── routes/
+│       │   │   ├── resume.routes.ts
+│       │   │   ├── credentials.routes.ts
+│       │   │   ├── jobs.routes.ts
+│       │   │   └── applications.routes.ts
+│       │   ├── controllers/
+│       │   │   ├── resume.controller.ts
+│       │   │   ├── credentials.controller.ts
+│       │   │   ├── jobs.controller.ts
+│       │   │   └── applications.controller.ts
+│       │   ├── services/
+│       │   │   ├── ai/
+│       │   │   │   ├── resumeParser.ts       # PDF → JSON via GPT-4o
+│       │   │   │   ├── domAnalyzer.ts        # HTML → field mapping
+│       │   │   │   └── formFiller.ts         # Master profile → form values
+│       │   │   ├── automation/
+│       │   │   │   ├── browserManager.ts     # Playwright lifecycle
+│       │   │   │   ├── stealthPlugin.ts      # Anti-detection measures
+│       │   │   │   └── proxyManager.ts       # Proxy rotation
+│       │   │   ├── portals/
+│       │   │   │   ├── base.strategy.ts      # Abstract portal strategy
+│       │   │   │   ├── indeed.strategy.ts    # Indeed-specific logic
+│       │   │   │   ├── glassdoor.strategy.ts # Glassdoor-specific logic
+│       │   │   │   └── wellfound.strategy.ts # Wellfound-specific logic
+│       │   │   ├── encryption.service.ts     # AES-256 encrypt/decrypt
+│       │   │   └── queue.service.ts          # BullMQ queue management
+│       │   ├── workers/
+│       │   │   └── application.worker.ts     # BullMQ worker process
+│       │   ├── websocket/
+│       │   │   └── socket.ts                 # Socket.io for live updates
+│       │   ├── utils/
+│       │   │   ├── logger.ts                 # Winston logger
+│       │   │   └── helpers.ts
+│       │   └── types/
+│       │       └── index.ts
+│       ├── tsconfig.json
+│       └── package.json
+│
+├── docker-compose.yml                # Redis for local development
+├── .env.example
+├── .gitignore
+├── README.md
+└── package.json                      # Root workspace config
